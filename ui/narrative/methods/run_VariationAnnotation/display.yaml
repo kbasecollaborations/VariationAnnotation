@@ -1,7 +1,7 @@
 #
 # define display information
 #
-name: Method Name Here
+name: VariationAnnotation
 
 tooltip: |
     Perform some kind of method
@@ -24,13 +24,62 @@ suggestions:
 # Configure the display and description of parameters
 #
 parameters :
-    parameter_1 :
+    variation_ref :
         ui-name : |
-            First parameter
+            Variation Object
         short-hint : |
-            The first parameter
+            Variation Reference
         long-hint  : |
-            The first parameter that needs to be entered to drive the method. This might be the first of many.
+            Variation Reference parameter
+    gff_ref :
+        ui-name : |
+            Genome
+        short-hint : |
+            Genome
+        long-hint  : |
+            Genome object parameter
+    canon :
+        ui-name : |
+            canonical transcripts only
+        short-hint : |
+            Canon Snpeff parametrs
+        long-hint  : |
+            Canon Snpeff parametrs
+    no_downstream :
+        ui-name : |
+            no downstream
+        short-hint : |
+            -no-downstream Snpeff parametrs
+        long-hint  : |
+            -no-downstream Snpeff parametrs
+    no_intergenic :
+        ui-name : |
+            no intergenic
+        short-hint : |
+            -no-intergenic Snpeff parametrs
+        long-hint  : |
+            -no-intergenic Snpeff parametrs
+    no_intron :
+        ui-name : |
+            no intron
+        short-hint : |
+            -no-intron Snpeff parametrs
+        long-hint  : |
+            -no-intron Snpeff parametrs
+    no_upstream :
+        ui-name : |
+            no upstream
+        short-hint : |
+            -no-upstream Snpeff parametrs
+        long-hint  : |
+            -no-upstream Snpeff parametrs
+    no_utr :
+        ui-name : |
+            no utr
+        short-hint : |
+            -no-utr Snpeff parametrs
+        long-hint  : |
+            -no-utr Snpeff parametrs
 
 description : |
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pulvinar efficitur felis, quis tincidunt sem congue at. Vivamus ornare feugiat faucibus. Fusce tincidunt mattis nunc, nec varius purus convallis quis. Nulla facilisi. In at magna dolor. Suspendisse sit amet felis at arcu auctor dapibus vitae pharetra dui. Nam semper mi quis tortor fermentum mollis. Donec a arcu pharetra, rutrum dolor vitae, rutrum mauris. Donec ornare fringilla sagittis. Nam laoreet est in elementum malesuada. Vestibulum id mi eget urna hendrerit feugiat. Donec et ultrices nulla. Phasellus diam eros, dapibus at tempus nec, semper vel ante.</p>

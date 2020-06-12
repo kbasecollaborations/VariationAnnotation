@@ -63,8 +63,13 @@ class VariationAnnotationTest(unittest.TestCase):
         #
         # Check returned data with
         # self.assertEqual(ret[...], ...) or other unittest methods
-        ret = self.serviceImpl.annotate_variants(self.ctx, {'workspace_name': self.wsName,
+        ret = self.serviceImpl.annotate_variants(self.ctx, { 'workspace_name': 'man4ish_gupta:narrative_1591938457712',
                                                              'gff_ref':'42531/6/1',
-                                                             'assembly_ref':'42531/2/1',
-                                                             'variation_ref': '42531/4/1'})
-
+                                                             'variation_ref': '42531/4/1',
+                                                             'canon':1,
+                                                             'no_downstream':1,
+                                                             'no_intergenic':1,
+                                                             'no_intron':0,
+                                                             'no_upstream':1,
+                                                             'no_utr':0
+                                                             })

@@ -10,6 +10,13 @@ module VariationAnnotation {
     */
     typedef structure {
         string variation_ref;
+        string gff_ref;
+        int canon;
+        int no_downstream;
+        int no_intergenic;
+        int no_intron;
+        int no_upstream;
+        int no_utr;
         string out_variation_name;
     } input_params;
 

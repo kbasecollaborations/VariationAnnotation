@@ -3,10 +3,12 @@
 import logging
 import uuid
 import os
+import shutil
 from installed_clients.VariationUtilClient import VariationUtil
 from installed_clients.KBaseReportClient import KBaseReport
 from VariationAnnotation.Utils.SnpEffUtils import SnpEffUtils
 from VariationAnnotation.Utils.DownloadUtils import DownloadUtils
+from installed_clients.WorkspaceClient import Workspace as Workspace
 
 #END_HEADER
 
@@ -51,6 +53,7 @@ class VariationAnnotation:
         self.VU = VariationUtil(self.callback_url)
         self.SU = SnpEffUtils()
         self.DU = DownloadUtils()
+        self.config = config
         #self.snpeff=<path_to_snpeff>
         #END_CONSTRUCTOR
         pass
@@ -97,40 +100,41 @@ class VariationAnnotation:
         #gff_path = .....
         #assembly_path ...
 
+
+        workspace = params['workspace_name']
+        self.ws_url = self.config['workspace-url']
+        self.ws = Workspace(self.ws_url, token=ctx['token'])
+
+
+
         filename = "/kb/module/work/variation.vcf"
         output_dir = os.path.join(self.scratch, str(uuid.uuid4()))
         os.mkdir(output_dir)
+
+        shutil.copytree("/kb/module/deps/snp_eff", output_dir + "/snp_eff")
+
+        variation_ref= params['variation_ref']
+        variation_obj = self.ws.get_objects2({'objects': [{'ref':variation_ref}]})['data'][0]
+
+        assembly_ref= variation_obj['data']['assembly_ref']
+        assembly_path = self.DU.get_assembly(assembly_ref, output_dir)
+
+        gff_ref = params['gff_ref']
+        gff_path = self.DU.get_gff(gff_ref, output_dir)
 
         vcf_path = self.VU.get_variation_as_vcf({
                 'variation_ref': params['variation_ref'],
                 'filename':filename
             })
-        
-        #gff_path = self.DU.get_gff(params["gff_ref"])
-        gff_path = "/kb/module/work/sample.gff" #hardcoded for testing
 
-        # Download fasta assembly
-        #assembly_path = self.DU.get_assembly(params["assembly_ref"])
-        assembly_path = "/kb/module/work/sample.fa"   #hardcoded for testing
-
-        annotated_vcf_path = self.SU.annotate_variants(vcf_path['path'], params)
+        genome_index_name = self.SU.build_genome(gff_path, assembly_path, output_dir)
+        annotated_vcf_path = self.SU.annotate_variants(genome_index_name, vcf_path['path'], params, output_dir)
 
         #self.VU.   #upload file to shock
-
-
-
-
 
         # TODO: Add parameters for snpeff in parameters
         # Parse the snpeff parameters from params and build snpeff command
         # TODO: We are hardcoding this for now
-
-
-
-
-
-
-
 
         #
         output = {

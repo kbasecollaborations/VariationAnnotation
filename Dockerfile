@@ -7,6 +7,21 @@ MAINTAINER KBase Developer
 # installation scripts.
 
 # RUN apt-get update
+RUN apt-get update && apt-get install -y wget
+RUN apt-get update && apt-get install -y tabix
+
+
+# Setup ENV variables
+ENV \
+  SNPEFF_VERSION=4_3r \
+  SNPEFF_HOME=/kb/deployment/bin/snpEff
+
+# Install snpEff
+RUN \
+  wget -O snpEff_v${SNPEFF_VERSION}_core.zip \
+    http://downloads.sourceforge.net/project/snpeff/snpEff_v${SNPEFF_VERSION}_core.zip \
+  && unzip snpEff_v${SNPEFF_VERSION}_core.zip -d /kb/deployment/bin \
+  && rm snpEff_v${SNPEFF_VERSION}_core.zip
 
 
 # -----------------------------------------

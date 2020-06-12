@@ -9,24 +9,137 @@
         "input": null,
         "output": null
     },
-    "parameters": [ 
+    "parameters": [
         {
-            "id": "parameter_1",
-            "optional": true,
-            "advanced": false,
-            "allow_multiple": false,
-            "default_values": [ "" ],
-            "field_type": "text",
-            "text_options": {
-                "valid_ws_types": [ ]
-            }
-        }
+          "id": "variation_ref",
+          "optional": false,
+          "advanced": false,
+          "allow_multiple": false,
+          "default_values": [ "" ],
+          "field_type": "text",
+          "text_options": {
+               "valid_ws_types": ["KBaseGwasData.Variations" ]
+           }
+        },
+        {
+          "id": "gff_ref",
+          "optional": false,
+          "advanced": false,
+          "allow_multiple": false,
+          "default_values": [ "" ],
+          "field_type": "text",
+          "text_options": {
+               "valid_ws_types": ["KBaseGenomes.Genome" ]
+           }
+        },
+        {
+           "default_values" : [
+           "0"
+           ],
+          "advanced" : true,
+          "checkbox_options" : {
+           "unchecked_value" : 0,
+           "checked_value" : 1
+           },
+          "text_options" : {
+           "valid_ws_types" : []
+          },
+          "field_type" : "checkbox",
+          "allow_multiple" : false,
+          "optional" : false,
+          "id" : "canon"
+        },
+        {
+           "default_values" : [
+           "0"
+           ],
+          "advanced" : true,
+          "checkbox_options" : {
+           "unchecked_value" : 0,
+           "checked_value" : 1
+           },
+          "text_options" : {
+           "valid_ws_types" : []
+          },
+          "field_type" : "checkbox",
+          "allow_multiple" : false,
+          "optional" : false,
+          "id" : "no_downstream"
+        },
+        {
+           "default_values" : [
+           "0"
+           ],
+          "advanced" : true,
+          "checkbox_options" : {
+           "unchecked_value" : 0,
+           "checked_value" : 1
+           },
+          "text_options" : {
+           "valid_ws_types" : []
+          },
+          "field_type" : "checkbox",
+          "allow_multiple" : false,
+          "optional" : false,
+          "id" : "no_intergenic"
+        },
+        {
+           "default_values" : [
+           "0"
+           ],
+          "advanced" : true,
+          "checkbox_options" : {
+           "unchecked_value" : 0,
+           "checked_value" : 1
+           },
+          "text_options" : {
+           "valid_ws_types" : []
+          },
+          "field_type" : "checkbox",
+          "allow_multiple" : false,
+          "optional" : false,
+          "id" : "no_intron"
+        },
+        {
+           "default_values" : [
+           "0"
+           ],
+          "advanced" : true,
+          "checkbox_options" : {
+           "unchecked_value" : 0,
+           "checked_value" : 1
+           },
+          "text_options" : {
+           "valid_ws_types" : []
+          },
+          "field_type" : "checkbox",
+          "allow_multiple" : false,
+          "optional" : false,
+          "id" : "no_upstream"
+       },
+       {
+           "default_values" : [
+           "0"
+           ],
+          "advanced" : true,
+          "checkbox_options" : {
+           "unchecked_value" : 0,
+           "checked_value" : 1
+           },
+          "text_options" : {
+           "valid_ws_types" : []
+          },
+          "field_type" : "checkbox",
+          "allow_multiple" : false,
+          "optional" : false,
+          "id" : "no_utr"
+       }
     ],
     "behavior": {
         "service-mapping": {
             "url": "",
             "name": "VariationAnnotation",
-            "method": "run_VariationAnnotation",
+            "method": "annotate_variants",
             "input_mapping": [
                 {
                     "narrative_system_variable": "workspace",
@@ -35,8 +148,29 @@
                     "narrative_system_variable": "workspace_id",
                     "target_property": "workspace_id"
                 },{
-                    "input_parameter": "parameter_1",
-                    "target_property": "parameter_1"
+                    "input_parameter": "variation_ref",
+                    "target_property": "variation_ref"
+                },{
+                    "input_parameter": "gff_ref",
+                    "target_property": "variation_ref"
+                },{
+                    "input_parameter": "canon",
+                    "target_property": "canon"
+                },{
+                    "input_parameter": "no_downstream",
+                    "target_property": "no_downstream"
+                },{
+                    "input_parameter": "no_intergenic",
+                    "target_property": "no_intergenic"
+                },{
+                    "input_parameter": "no_intron",
+                    "target_property": "no_intron"
+                },{
+                    "input_parameter": "no_upstream",
+                    "target_property": "no_upstream"
+                },{
+                    "input_parameter": "no_utr",
+                    "target_property": "no_utr"
                 }
             ],
             "output_mapping": [
