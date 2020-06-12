@@ -33,7 +33,13 @@ class SnpEffUtils:
 
 
     def annotate_variants(self, genome_index_name, vcf_path, params, output_dir):
-        snp_eff_cmd = ["java"]
+        '''
+        cd /kb/module/work/tmp/b3043710-802c-4acf-8996-9dbd54163e6b/snp_eff/ && java -jar /kb/module/work/tmp/b3043710-802c-4acf-8996-9dbd54163e6b/snp_eff/snpEff.jar -v -canon -no-downstream -no-intergenic -no-upstream kbase_v1 /kb/module/work/tmp/variation.vcf |bgzip -c  > /kb/module/work/tmp/variation.ANN.vcf.gz
+        '''
+        snp_eff_cmd = ["cd"]
+        snp_eff_cmd.append(os.path.join(output_dir, "snp_eff/"))
+        snp_eff_cmd.append("&&")
+        snp_eff_cmd.append("java")
         snp_eff_cmd.append("-jar")
         snp_eff_cmd.append(os.path.join(output_dir, "snp_eff/snpEff.jar"))
         snp_eff_cmd.append("-v")
@@ -61,7 +67,7 @@ class SnpEffUtils:
         snp_eff_cmd.extend([">",out_path])
 
         snp_eff_command = " ".join(snp_eff_cmd)
-
+        #exit(snp_eff_command)
         self.run_cmd(snp_eff_command)
 
         return out_path

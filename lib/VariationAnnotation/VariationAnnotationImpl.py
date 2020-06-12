@@ -8,6 +8,7 @@ from installed_clients.VariationUtilClient import VariationUtil
 from installed_clients.KBaseReportClient import KBaseReport
 from VariationAnnotation.Utils.SnpEffUtils import SnpEffUtils
 from VariationAnnotation.Utils.DownloadUtils import DownloadUtils
+from VariationAnnotation.Utils.htmlreportutils import htmlreportutils
 from installed_clients.WorkspaceClient import Workspace as Workspace
 
 #END_HEADER
@@ -53,6 +54,7 @@ class VariationAnnotation:
         self.VU = VariationUtil(self.callback_url)
         self.SU = SnpEffUtils()
         self.DU = DownloadUtils()
+        self.HU = htmlreportutils()
         self.config = config
         #self.snpeff=<path_to_snpeff>
         #END_CONSTRUCTOR
@@ -86,6 +88,8 @@ class VariationAnnotation:
     #        'variation_ref': params['variation_ref'],
     #        'filename':filename
     #    })
+    # TODO current vcf path is hard coded for testing which need to be removed.
+
         vcf_path = "/kb/module/work/variation.vcf.gz"
         print (vcf_path)
         # TODO: Need to think through how to get this from the USERS
@@ -106,7 +110,7 @@ class VariationAnnotation:
         self.ws = Workspace(self.ws_url, token=ctx['token'])
 
 
-
+        # TODO current file name is hard coded but that need to be changed later.
         filename = "/kb/module/work/variation.vcf"
         output_dir = os.path.join(self.scratch, str(uuid.uuid4()))
         os.mkdir(output_dir)
@@ -136,6 +140,7 @@ class VariationAnnotation:
         # Parse the snpeff parameters from params and build snpeff command
         # TODO: We are hardcoding this for now
 
+        self.HU.create_html_report(self.callback_url , output_dir, workspace)
         #
         output = {
             "x":vcf_path
