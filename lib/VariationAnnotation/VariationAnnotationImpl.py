@@ -123,7 +123,7 @@ class VariationAnnotation:
         assembly_ref= variation_obj['data']['assembly_ref']
         assembly_path = self.DU.get_assembly(assembly_ref, output_dir)
 
-        gff_ref = params['gff_ref']
+        gff_ref = params['genome_ref']
         gff_path = self.DU.get_gff(gff_ref, output_dir)
 
         vcf_path = self.VU.get_variation_as_vcf({
