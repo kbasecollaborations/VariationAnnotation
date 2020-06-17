@@ -17,7 +17,7 @@ module VariationAnnotation {
         int no_intron;
         int no_upstream;
         int no_utr;
-        string out_variation_name;
+        string output_object_name; 
     } input_params;
 
     typedef structure {
