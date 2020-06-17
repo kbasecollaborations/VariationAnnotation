@@ -158,10 +158,12 @@
                     "target_property": "workspace_name"
                 },{
                     "input_parameter": "variation_ref",
-                    "target_property": "variation_ref"
+                    "target_property": "variation_ref",
+		    "target_type_transform": "resolved-ref"
                 },{
                     "input_parameter": "gff_ref",
-                    "target_property": "variation_ref"
+                    "target_property": "variation_ref",
+		    "target_type_transform": "resolved-ref"
                 },{
                     "input_parameter": "canon",
                     "target_property": "canon"
@@ -182,7 +184,8 @@
                     "target_property": "no_utr"
                 }, {
                     "input_parameter": "output_object_name",
-                    "target_property": "output_object_name"
+                    "target_property": "output_object_name",
+		    "target_type_transform": "resolved-ref"
                 }
             ],
             "output_mapping": [
