@@ -31,7 +31,7 @@ parameters :
             Variation Reference
         long-hint  : |
             Variation Reference parameter
-    gff_ref :
+    genome_ref :
         ui-name : |
             Genome
         short-hint : |

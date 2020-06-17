@@ -22,7 +22,7 @@
            }
         },
         {
-          "id": "gff_ref",
+          "id": "genome_ref",
           "optional": false,
           "advanced": false,
           "allow_multiple": false,
@@ -161,8 +161,8 @@
                     "target_property": "variation_ref",
 		    "target_type_transform": "resolved-ref"
                 },{
-                    "input_parameter": "gff_ref",
-                    "target_property": "variation_ref",
+                    "input_parameter": "genome_ref",
+                    "target_property": "genome_ref",
 		    "target_type_transform": "resolved-ref"
                 },{
                     "input_parameter": "canon",
