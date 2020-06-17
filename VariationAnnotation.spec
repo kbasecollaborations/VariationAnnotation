@@ -9,6 +9,7 @@ module VariationAnnotation {
         out_variation_name: Name by which the output object will be saved
     */
     typedef structure {
+        string workspace_name;
         string variation_ref;
         string gff_ref;
         int canon;
