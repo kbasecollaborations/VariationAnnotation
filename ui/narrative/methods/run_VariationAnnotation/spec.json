@@ -184,8 +184,7 @@
                     "target_property": "no_utr"
                 }, {
                     "input_parameter": "output_object_name",
-                    "target_property": "output_object_name",
-		    "target_type_transform": "resolved-ref"
+                    "target_property": "output_object_name"
                 }
             ],
             "output_mapping": [
