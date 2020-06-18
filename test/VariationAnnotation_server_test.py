@@ -71,5 +71,6 @@ class VariationAnnotationTest(unittest.TestCase):
                                                              'no_intergenic':1,
                                                              'no_intron':0,
                                                              'no_upstream':1,
-                                                             'no_utr':0
+                                                             'no_utr':0, 
+                                                             'output_object_name':'output_obj'
                                                              })

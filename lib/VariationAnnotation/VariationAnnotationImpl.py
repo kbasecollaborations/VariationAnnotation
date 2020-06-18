@@ -133,6 +133,11 @@ class VariationAnnotation:
 
         genome_index_name = self.SU.build_genome(gff_path, assembly_path, output_dir)
         annotated_vcf_path = self.SU.annotate_variants(genome_index_name, vcf_path['path'], params, output_dir)
+        params['vcf_staging_file_path'] = annotated_vcf_path
+        params['variation_object_name'] = params['output_object_name']
+        params['genome_or_assembly_ref'] = params['genome_ref'] 
+        
+        self.VU.save_variation_from_vcf(params)
 
         #self.VU.   #upload file to shock
 
