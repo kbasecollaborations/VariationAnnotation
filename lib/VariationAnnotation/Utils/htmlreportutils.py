@@ -37,11 +37,12 @@ class htmlreportutils:
         report_shock_id = dfu.file_to_shock({'file_path': output_dir,
                                             'pack': 'zip'})['shock_id']
 
+        os.rename(os.path.join(output_dir, "snp_eff/snpEff_summary.html"), os.path.join(output_dir, "snp_eff/index.html"))
         html_file = {
             'shock_id': report_shock_id,
-            'name': output_dir + "snp_eff/snpEff_summary.html",
+            'name': os.path.join(output_dir, "snp_eff/index.html"),
             'label': 'index.html',
-            'description': 'HTMLL report for GSEA'
+            'description': 'HTMLL report for Annotation'
             }
 
         report_info = report.create_extended_report({
