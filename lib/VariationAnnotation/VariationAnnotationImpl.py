@@ -145,11 +145,15 @@ class VariationAnnotation:
         # Parse the snpeff parameters from params and build snpeff command
         # TODO: We are hardcoding this for now
 
-        self.HU.create_html_report(self.callback_url , output_dir, workspace)
         #
+        logging.info("creating html report ...")
+        output = self.HU.create_html_report(self.callback_url , output_dir, workspace)
+        report = KBaseReport(self.callback_url)
+        '''
         output = {
             "x":vcf_path
         }
+        '''
         #END annotate_variants
 
         # At some point might do deeper type checking...
