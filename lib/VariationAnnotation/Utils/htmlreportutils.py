@@ -7,10 +7,9 @@ import shutil
 
 class htmlreportutils:
     def __init__(self):
-        self.organism_dict = {}
         pass
 
-    def create_html_report(self, callback_url, output_dir, workspace_name):
+    def create_html_report(self, callback_url, output_dir, workspace_name, objects_created):
         '''
          function for creating html report
         '''
@@ -33,19 +32,20 @@ class htmlreportutils:
 
         #dest = shutil.copytree(source, destination) 
         #os.system("cp -r " + source +" "+ destination)
+        report_name = 'VariationAnnotationReport' + str(uuid.uuid4())
 
         report_shock_id = dfu.file_to_shock({'file_path': output_dir,
                                             'pack': 'zip'})['shock_id']
 
-        os.rename(os.path.join(output_dir, "snp_eff/snpEff_summary.html"), os.path.join(output_dir, "snp_eff/index.html"))
         html_file = {
             'shock_id': report_shock_id,
-            'name': os.path.join(output_dir, "snp_eff/index.html"),
+            'name':  "index.html",
             'label': 'index.html',
-            'description': 'HTMLL report for Annotation'
+            'description': 'HTMLL report for VariationAnnotation'
             }
 
         report_info = report.create_extended_report({
+                        'objects_created': objects_created,
                         'direct_html_link_index': 0,
                         'html_links': [html_file],
                         'report_object_name': report_name,

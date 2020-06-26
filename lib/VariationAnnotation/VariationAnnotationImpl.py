@@ -137,8 +137,13 @@ class VariationAnnotation:
         params['variation_object_name'] = params['output_object_name']
         params['genome_or_assembly_ref'] = params['genome_ref'] 
         
-        self.VU.save_variation_from_vcf(params)
-
+        variantion_ref = self.VU.save_variation_from_vcf(params)['variation_ref']
+       
+        created_objects = []
+        created_objects.append({
+            "ref": variation_ref,
+            "description": "Variation Object"
+            })
         #self.VU.   #upload file to shock
 
         # TODO: Add parameters for snpeff in parameters
@@ -146,8 +151,18 @@ class VariationAnnotation:
         # TODO: We are hardcoding this for now
 
         #
+
+        os.rename(os.path.join(output_dir, "snp_eff/snpEff_summary.html"), os.path.join(output_dir, "snp_eff/index.html"))
+
+        snp_eff_resultdir = os.path.join(output_dir,"snp_eff_results")
+        os.mkdir(snp_eff_resultdir)
+        shutil.copyfile(os.path.join(output_dir, "snp_eff/index.html"), os.path.join(snp_eff_resultdir, "index.html"))
+        shutil.copyfile(os.path.join(output_dir, "snp_eff/snpEff_genes.txt"), os.path.join(snp_eff_resultdir, "snpEff_genes.txt"))
+
+        #report_dirpath = os.path.join(output_dir, "snp_eff")
+
         logging.info("creating html report ...")
-        output = self.HU.create_html_report(self.callback_url , output_dir, workspace)
+        output = self.HU.create_html_report(self.callback_url, snp_eff_resultdir, workspace, created_objects)
         report = KBaseReport(self.callback_url)
         '''
         output = {
