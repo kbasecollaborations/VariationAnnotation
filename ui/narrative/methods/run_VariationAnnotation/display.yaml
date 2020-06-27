@@ -4,7 +4,7 @@
 name: VariationAnnotation
 
 tooltip: |
-    Perform annotation to variation data.
+    Annotate variants using SnpEff tool.
 
 screenshots: []
 
@@ -29,69 +29,65 @@ parameters :
             Variation Object
         short-hint : |
             Variation Reference
-        long-hint  : |
-            Variation Reference parameter
     genome_ref :
         ui-name : |
             Genome
         short-hint : |
-            Genome
-        long-hint  : |
             Genome object parameter
     canon :
         ui-name : |
             canonical transcripts only
         short-hint : |
-            Canon Snpeff parametrs
-        long-hint  : |
-            Canon Snpeff parametrs
+            Only use canonical transcripts
     no_downstream :
         ui-name : |
             no downstream
         short-hint : |
-            -no-downstream Snpeff parametrs
-        long-hint  : |
-            -no-downstream Snpeff parametrs
+            Do not show DOWNSTREAM changes
     no_intergenic :
         ui-name : |
             no intergenic
         short-hint : |
-            -no-intergenic Snpeff parametrs
-        long-hint  : |
-            -no-intergenic Snpeff parametrs
+            Do not show INTERGENIC changes
     no_intron :
         ui-name : |
             no intron
         short-hint : |
-            -no-intron Snpeff parametrs
-        long-hint  : |
-            -no-intron Snpeff parametrs
+            Do not show INTRON changes
     no_upstream :
         ui-name : |
             no upstream
         short-hint : |
-            -no-upstream Snpeff parametrs
-        long-hint  : |
-            -no-upstream Snpeff parametrs
+            Do not show UPSTREAM changes
     no_utr :
         ui-name : |
             no utr
         short-hint : |
-            -no-utr Snpeff parametrs
-        long-hint  : |
-            -no-utr Snpeff parametrs
+            Do not show 5_PRIME_UTR or 3_PRIME_UTR changes
     output_object_name :
         ui-name : |
             output object
         short-hint : |
             -output object parametrs
-        long-hint  : |
-            -output object parametrs
          
 
 description : |
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pulvinar efficitur felis, quis tincidunt sem congue at. Vivamus ornare feugiat faucibus. Fusce tincidunt mattis nunc, nec varius purus convallis quis. Nulla facilisi. In at magna dolor. Suspendisse sit amet felis at arcu auctor dapibus vitae pharetra dui. Nam semper mi quis tortor fermentum mollis. Donec a arcu pharetra, rutrum dolor vitae, rutrum mauris. Donec ornare fringilla sagittis. Nam laoreet est in elementum malesuada. Vestibulum id mi eget urna hendrerit feugiat. Donec et ultrices nulla. Phasellus diam eros, dapibus at tempus nec, semper vel ante.</p>
+    <p>
+    This app is using snpeff tool
+    <a href="http://snpeff.sourceforge.net/SnpEff.html">SnpEff</a>
+    annotation pipeline.
+    </p>
+    <p>
+    SnpEff is a variant annotation and effect prediction tool. It annotates and predicts the effects of variants on genes (such as amino acid changes).
+    </p>
+    More information can be found at: 
+    http://snpeff.sourceforge.net/SnpEff_manual.html
+    
+    <p>SnpEff version SnpEff 4.3t </p>
 
-    <p>Curabitur auctor, metus at tristique euismod, odio elit tincidunt neque, a facilisis sem massa convallis dolor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc ut hendrerit tellus. Nunc lacinia laoreet finibus. Etiam vitae sagittis enim. Fusce consectetur porta est eu pretium. In hac habitasse platea dictumst. Integer pellentesque sit amet sapien id venenatis. Nullam ac risus at orci eleifend aliquet. Vestibulum elit purus, euismod a nibh quis, pellentesque semper leo. Curabitur ullamcorper felis hendrerit nunc egestas, sit amet pharetra sapien porttitor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas hendrerit ipsum a ligula aliquet vestibulum. Duis a ante urna. Aenean ante neque, rhoncus id luctus ut, accumsan vel nunc.</p>
-
-    <p>Pellentesque accumsan aliquet magna, id consectetur tellus condimentum eu. Suspendisse elit dui, ornare ac leo eget, tincidunt feugiat orci. Maecenas auctor gravida lacinia. Mauris interdum nisi vel gravida varius. Nullam tempus, purus eget posuere aliquet, odio elit semper massa, quis facilisis massa odio vitae lacus. Fusce varius enim a mi vehicula tempus. Maecenas faucibus tellus ipsum, at venenatis ipsum auctor et. Suspendisse sem mi, dignissim id porta efficitur, auctor eget magna. Vivamus varius purus nulla, porttitor euismod lorem cursus quis. Nulla sit amet eros nec sem ultrices pulvinar.</p>
+publications :
+    -
+        display-text: |
+           Cingolani P, Platts A, Wang le L, Coon M, Nguyen T, Wang L, Land SJ, Lu X, Ruden DM. Fly (Austin) A program for annotating and predicting the effects of single nucleotide polymorphisms, SnpEff: SNPs in the genome of Drosophila melanogaster strain w1118; iso-2; iso-3.", . 2012 Apr-Jun;6(2):80-92.
+        link: https://pubmed.ncbi.nlm.nih.gov/22728672/
+    
