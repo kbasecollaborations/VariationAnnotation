@@ -1,9 +1,10 @@
 import uuid
-import os
+# import os
 from installed_clients.DataFileUtilClient import DataFileUtil
 from installed_clients.KBaseReportClient import KBaseReport
-from installed_clients.WorkspaceClient import Workspace
-import shutil
+# from installed_clients.WorkspaceClient import Workspace
+# import shutil
+
 
 class htmlreportutils:
     def __init__(self):
@@ -17,21 +18,21 @@ class htmlreportutils:
         dfu = DataFileUtil(callback_url)
         report_name = 'kb_gsea_report_' + str(uuid.uuid4())
         report = KBaseReport(callback_url)
-        #report_dir = "localhost"
-        #htmlstring = "<a href=" + report_dir + "/jbrowse/index.html>report link</a>"
-        #htmlstring = "<a href='./igv_output/index.html'>report link</a>"
-        #index_file_path = output_dir + "snp_eff/snpEff_summary.html"
-        #html_file = open(index_file_path, "wt")
-        #n = html_file.write(htmlstring)
-        #html_file.close()
+        # report_dir = "localhost"
+        # htmlstring = "<a href=" + report_dir + "/jbrowse/index.html>report link</a>"
+        # htmlstring = "<a href='./igv_output/index.html'>report link</a>"
+        # index_file_path = output_dir + "snp_eff/snpEff_summary.html"
+        # html_file = open(index_file_path, "wt")
+        # n = html_file.write(htmlstring)
+        # html_file.close()
         # Source path
-        #source = "/kb/module/deps/jbrowse"
+        # source = "/kb/module/deps/jbrowse"
 
         # Destination path
-        #destination = output_dir +"/jbrowse"
+        # destination = output_dir +"/jbrowse"
 
-        #dest = shutil.copytree(source, destination) 
-        #os.system("cp -r " + source +" "+ destination)
+        # dest = shutil.copytree(source, destination)
+        # os.system("cp -r " + source +" "+ destination)
         report_name = 'VariationAnnotationReport' + str(uuid.uuid4())
 
         report_shock_id = dfu.file_to_shock({'file_path': output_dir,

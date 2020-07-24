@@ -5,7 +5,7 @@ import uuid
 import os
 import shutil
 from installed_clients.VariationUtilClient import VariationUtil
-from installed_clients.KBaseReportClient import KBaseReport
+# from installed_clients.KBaseReportClient import KBaseReport
 from VariationAnnotation.Utils.SnpEffUtils import SnpEffUtils
 from VariationAnnotation.Utils.DownloadUtils import DownloadUtils
 from VariationAnnotation.Utils.htmlreportutils import htmlreportutils
@@ -60,7 +60,6 @@ class VariationAnnotation:
         #END_CONSTRUCTOR
         pass
 
-
     def annotate_variants(self, ctx, params):
         """
         This method extracts VCF from variation object,
@@ -79,36 +78,33 @@ class VariationAnnotation:
         #BEGIN annotate_variants
         # Validate the parameters
         # Extract vcf from variation using VariationUtil
-    #    output_dir = os.path.join(self.scratch, str(uuid.uuid4()))
-    #    os.mkdir(output_dir)
-    #    #filename = os.path.join(output_dir, "variation.vcf.gz")
+        #    output_dir = os.path.join(self.scratch, str(uuid.uuid4()))
+        #    os.mkdir(output_dir)
+        #    #filename = os.path.join(output_dir, "variation.vcf.gz")
 
-    #    print(filename)
-    #    vcf_path = self.VU.get_variation_as_vcf({
-    #        'variation_ref': params['variation_ref'],
-    #        'filename':filename
-    #    })
-    # TODO current vcf path is hard coded for testing which need to be removed.
+        #    print(filename)
+        #    vcf_path = self.VU.get_variation_as_vcf({
+        #        'variation_ref': params['variation_ref'],
+        #        'filename':filename
+        #    })
+        # TODO current vcf path is hard coded for testing which need to be removed.
 
+        self.SU.validate_params(params)
         vcf_path = "/kb/module/work/variation.vcf.gz"
-        print (vcf_path)
+        print(vcf_path)
+
         # TODO: Need to think through how to get this from the USERS
         # because variation_ref may or may not have a genome_ref field filled in
         # our spec.json may require some work
         # There is a chance that user may provide wrong genome as input if we don't deal with this properly
         # params['genome_ref']
-
-
         # Download gff and assembly based on geome_ref
-
         #gff_path = .....
         #assembly_path ...
-
 
         workspace = params['workspace_name']
         self.ws_url = self.config['workspace-url']
         self.ws = Workspace(self.ws_url, token=ctx['token'])
-
 
         # TODO current file name is hard coded but that need to be changed later.
         filename = "/kb/module/work/variation.vcf"
@@ -117,10 +113,10 @@ class VariationAnnotation:
 
         shutil.copytree("/kb/module/deps/snp_eff", output_dir + "/snp_eff")
 
-        variation_ref= params['variation_ref']
-        variation_obj = self.ws.get_objects2({'objects': [{'ref':variation_ref}]})['data'][0]
+        variation_ref = params['variation_ref']
+        variation_obj = self.ws.get_objects2({'objects': [{'ref': variation_ref}]})['data'][0]
 
-        assembly_ref= variation_obj['data']['assembly_ref']
+        assembly_ref = variation_obj['data']['assembly_ref']
         assembly_path = self.DU.get_assembly(assembly_ref, output_dir)
 
         gff_ref = params['genome_ref']
@@ -128,33 +124,30 @@ class VariationAnnotation:
 
         vcf_path = self.VU.get_variation_as_vcf({
                 'variation_ref': params['variation_ref'],
-                'filename':filename
+                'filename': filename
             })
 
         genome_index_name = self.SU.build_genome(gff_path, assembly_path, output_dir)
         annotated_vcf_path = self.SU.annotate_variants(genome_index_name, vcf_path['path'], params, output_dir)
         params['vcf_staging_file_path'] = annotated_vcf_path
         params['variation_object_name'] = params['output_object_name']
-        params['genome_or_assembly_ref'] = params['genome_ref'] 
-        
+        params['genome_or_assembly_ref'] = params['genome_ref']
+
         variantion_ref = self.VU.save_variation_from_vcf(params)['variation_ref']
-       
+
         created_objects = []
         created_objects.append({
             "ref": variation_ref,
             "description": "Variation Object"
             })
-        #self.VU.   #upload file to shock
 
+        #self.VU.   #upload file to shock
         # TODO: Add parameters for snpeff in parameters
         # Parse the snpeff parameters from params and build snpeff command
         # TODO: We are hardcoding this for now
 
-        #
-
         os.rename(os.path.join(output_dir, "snp_eff/snpEff_summary.html"), os.path.join(output_dir, "snp_eff/index.html"))
-
-        snp_eff_resultdir = os.path.join(output_dir,"snp_eff_results")
+        snp_eff_resultdir = os.path.join(output_dir, "snp_eff_results")
         os.mkdir(snp_eff_resultdir)
         shutil.copyfile(os.path.join(output_dir, "snp_eff/index.html"), os.path.join(snp_eff_resultdir, "index.html"))
         shutil.copyfile(os.path.join(output_dir, "snp_eff/snpEff_genes.txt"), os.path.join(snp_eff_resultdir, "snpEff_genes.txt"))
@@ -163,8 +156,9 @@ class VariationAnnotation:
 
         logging.info("creating html report ...")
         output = self.HU.create_html_report(self.callback_url, snp_eff_resultdir, workspace, created_objects)
-        report = KBaseReport(self.callback_url)
+
         '''
+        report = KBaseReport(self.callback_url)
         output = {
             "x":vcf_path
         }
@@ -177,6 +171,7 @@ class VariationAnnotation:
                              'output is not type dict as required.')
         # return the results
         return [output]
+
     def status(self, ctx):
         #BEGIN_STATUS
         returnVal = {'state': "OK",
