@@ -155,7 +155,8 @@ class VariationAnnotation:
         #report_dirpath = os.path.join(output_dir, "snp_eff")
 
         logging.info("creating html report ...")
-        output = self.HU.create_html_report(self.callback_url, snp_eff_resultdir, workspace, created_objects)
+        output = self.HU.create_html_report(self.callback_url, snp_eff_resultdir, workspace)
+        # output = self.HU.create_html_report(self.callback_url, snp_eff_resultdir, workspace, created_objects)
 
         '''
         report = KBaseReport(self.callback_url)
