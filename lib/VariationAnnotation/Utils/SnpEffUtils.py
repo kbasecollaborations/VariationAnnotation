@@ -82,6 +82,7 @@ class SnpEffUtils:
         snp_eff_cmd.extend(["|bgzip", "-c "])
         snp_eff_cmd.extend([">", out_path])
         snp_eff_command = " ".join(snp_eff_cmd)
+        print("^^^^^^" + snp_eff_command + "^^^^^^^")
         self.run_cmd(snp_eff_command)
 
         return out_path
