@@ -145,17 +145,18 @@ class VariationAnnotation:
         # TODO: Add parameters for snpeff in parameters
         # Parse the snpeff parameters from params and build snpeff command
         # TODO: We are hardcoding this for now
-      
+        
         print("\n\n\n")
         print("$$$$$$$$" + output_dir + "$$$$$$$$$")
-        arr = os.listdir(output_dir)
+        arr = os.listdir(output_dir + "/snp_eff")
         for files in arr:
             print("########" + files + "###########")
         print("\n\n\n")
-        os.rename(os.path.join(output_dir, "snp_eff/snpEff_summary.html"), os.path.join(output_dir, "snp_eff/index.html"))
+        
+        #os.rename(os.path.join(output_dir, "snp_eff/snpEff_summary.html"), os.path.join(output_dir, "snp_eff/index.html"))
         snp_eff_resultdir = os.path.join(output_dir, "snp_eff_results")
         os.mkdir(snp_eff_resultdir)
-        shutil.copyfile(os.path.join(output_dir, "snp_eff/index.html"), os.path.join(snp_eff_resultdir, "index.html"))
+        #shutil.copyfile(os.path.join(output_dir, "snp_eff/index.html"), os.path.join(snp_eff_resultdir, "index.html"))
         shutil.copyfile(os.path.join(output_dir, "snp_eff/snpEff_genes.txt"), os.path.join(snp_eff_resultdir, "snpEff_genes.txt"))
 
         #report_dirpath = os.path.join(output_dir, "snp_eff")
