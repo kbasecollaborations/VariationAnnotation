@@ -110,7 +110,7 @@ class VariationAnnotation:
         filename = "/kb/module/work/variation.vcf"
         output_dir = os.path.join(self.scratch, str(uuid.uuid4()))
         os.mkdir(output_dir)
-
+        
         shutil.copytree("/kb/module/deps/snp_eff", output_dir + "/snp_eff")
 
         variation_ref = params['variation_ref']
@@ -121,13 +121,22 @@ class VariationAnnotation:
 
         gff_ref = params['genome_ref']
         gff_path = self.DU.get_gff(gff_ref, output_dir)
-
+       
+        # Todo: It is temporary fix but need to find logical removal of exons based on coordinates.
+        fix_cmd = "grep -v \"exon\" "+ gff_path + " > /kb/module/work/tmp/output.gff"
+        print(fix_cmd)
+        os.system(fix_cmd)
+        #os.system("cp /kb/module/work/tmp/output.gff " + os.path.join(output_dir, "/snp_eff/data/kbase_v1/genes.gff")) 
+        #shutil.copyfile("/kb/module/work/tmp/output.gff", output_dir + "/snp_eff/data/kbase_v1/genes.gff")
+        
         vcf_path = self.VU.get_variation_as_vcf({
                 'variation_ref': params['variation_ref'],
                 'filename': filename
             })
 
-        genome_index_name = self.SU.build_genome(gff_path, assembly_path, output_dir)
+        new_gff_path = "/kb/module/work/tmp/output.gff"
+
+        genome_index_name = self.SU.build_genome(new_gff_path, assembly_path, output_dir)
         annotated_vcf_path = self.SU.annotate_variants(genome_index_name, vcf_path['path'], params, output_dir)
         params['vcf_staging_file_path'] = annotated_vcf_path
         params['variation_object_name'] = params['output_object_name']

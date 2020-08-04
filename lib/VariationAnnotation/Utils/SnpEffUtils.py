@@ -28,7 +28,7 @@ class SnpEffUtils:
         shutil.copyfile(gff_path, os.path.join(output_dir, "snp_eff/data/kbase_v1/genes.gff"))
         # shutil.copyfile(assembly_path, os.path.join(output_dir,"snp_eff/data/kbase_v1"))
 
-        build_cmd = "java -jar " + os.path.join(output_dir, "snp_eff/snpEff.jar") + " build -gff3 -v kbase_v1"
+        build_cmd = "java -Xmx4g -jar " + os.path.join(output_dir, "snp_eff/snpEff.jar") + " build -gff3 -v kbase_v1"
         self.run_cmd(build_cmd)
         return "kbase_v1"
 
@@ -58,6 +58,7 @@ class SnpEffUtils:
         snp_eff_cmd.append(os.path.join(output_dir, "snp_eff/"))
         snp_eff_cmd.append("&&")
         snp_eff_cmd.append("java")
+        snp_eff_cmd.append("-Xmx4g")
         snp_eff_cmd.append("-jar")
         snp_eff_cmd.append(os.path.join(output_dir, "snp_eff/snpEff.jar"))
         snp_eff_cmd.append("-v")
