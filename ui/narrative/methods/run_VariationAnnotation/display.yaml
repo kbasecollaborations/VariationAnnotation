@@ -34,6 +34,16 @@ parameters :
             Genome
         short-hint : |
             Genome object parameter
+    input_sample_set:
+        ui-name : |
+            Sample set
+        short-hint : |
+            Sample set with strain information
+    strain_info :
+        ui-name : |
+            Strain information
+        short-hint : |
+            Select sample from the corresponding sample set 
     canon :
         ui-name : |
             canonical transcripts only

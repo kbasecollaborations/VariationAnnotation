@@ -29,7 +29,7 @@
           "default_values": [ "" ],
           "field_type": "text",
           "text_options": {
-               "valid_ws_types": ["KBaseGenomes.Genome" ]
+               "valid_ws_types": ["KBaseGenomes.Genome"]
            }
         },
         {
@@ -135,6 +135,37 @@
           "id" : "no_utr"
        },
        {
+          "id" : "input_sample_set",
+          "optional" : false,
+          "advanced" : false,
+          "allow_multiple" : false,
+          "default_values" : [ "" ],
+          "field_type" : "text",
+          "text_options" : {
+            "valid_ws_types" : ["KBaseSets.SampleSet"]
+          }
+       }, 
+       {
+         "id" : "strain_info",
+         "optional" : false,
+         "advanced" : false,
+         "allow_multiple" : false,
+         "default_values" : [ "" ],
+         "field_type" : "textsubdata",
+         "textsubdata_options" : {
+            "subdata_selection": {
+            "parameter_id" : "input_sample_set",
+            "subdata_included" : ["samples/[*]/id", "samples/[*]/name"],
+            "path_to_subdata": ["samples"],
+            "selection_id" : "name",
+            "selection_description" : ["id"]
+            },
+         "multiselection":false,
+         "show_src_obj":true,
+         "allow_custom":false
+         }
+       }, 
+       {
             "id": "output_object_name",
             "optional": false,
             "advanced": false,
@@ -164,7 +195,17 @@
                     "input_parameter": "genome_ref",
                     "target_property": "genome_ref",
 		    "target_type_transform": "resolved-ref"
-                },{
+                },
+                {
+                   "input_parameter": "input_sample_set",
+                   "target_property": "input_sample_set",
+                   "target_type_transform": "resolved-ref"
+                },
+                {
+                   "input_parameter": "strain_info",
+                   "target_property": "strain_info"
+                }, 
+                {
                     "input_parameter": "canon",
                     "target_property": "canon"
                 },{

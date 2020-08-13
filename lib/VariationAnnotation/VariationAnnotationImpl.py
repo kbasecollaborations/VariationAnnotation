@@ -138,11 +138,20 @@ class VariationAnnotation:
 
         genome_index_name = self.SU.build_genome(new_gff_path, assembly_path, output_dir)
         annotated_vcf_path = self.SU.annotate_variants(genome_index_name, vcf_path['path'], params, output_dir)
+        '''
         params['vcf_staging_file_path'] = annotated_vcf_path
         params['variation_object_name'] = params['output_object_name']
         params['genome_or_assembly_ref'] = params['genome_ref']
-
-        variantion_ref = self.VU.save_variation_from_vcf(params)['variation_ref']
+        '''
+        save_variation_params = {'workspace_name': params['workspace_name'],
+            'genome_or_assembly_ref': params['genome_ref'],      
+            'sample_set_ref':params['input_sample_set'],
+            'sample_attribute_name':'sample_attr',
+            'vcf_staging_file_path': annotated_vcf_path,
+            'variation_object_name': params['output_object_name']
+            }  
+       
+        variantion_ref = self.VU.save_variation_from_vcf(save_variation_params)['variation_ref']
 
         created_objects = []
         created_objects.append({

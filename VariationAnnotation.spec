@@ -11,6 +11,8 @@ module VariationAnnotation {
     typedef structure {
         string workspace_name;
         string variation_ref;
+        string input_sample_set;
+        string strain_info;
         string genome_ref;
         int canon;
         int no_downstream;
