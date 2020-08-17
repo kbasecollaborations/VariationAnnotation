@@ -66,8 +66,6 @@ class VariationAnnotationTest(unittest.TestCase):
         ret = self.serviceImpl.annotate_variants(self.ctx, { 'workspace_name': 'pranjan77:narrative_1596711680507',
                                                              'genome_ref':'52890/9/1',
                                                              'variation_ref': '52890/26/1',
-                                                             'input_sample_set':'52890/11/1',
-                                                             'strain_info':'4cce3afe-7fd0-41a5-9285-ed0b627253c5', 
                                                              'canon':1,
                                                              'no_downstream':1,
                                                              'no_intergenic':1,

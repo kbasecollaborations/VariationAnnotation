@@ -116,6 +116,10 @@ class VariationAnnotation:
         variation_ref = params['variation_ref']
         variation_obj = self.ws.get_objects2({'objects': [{'ref': variation_ref}]})['data'][0]
 
+
+        data = self.ws.get_objects2( {'objects':[{"ref":variation_ref, 'included': ['/sample_set_ref']}]})['data'][0]['data']
+        sample_set_ref = data['sample_set_ref']
+
         assembly_ref = variation_obj['data']['assembly_ref']
         assembly_path = self.DU.get_assembly(assembly_ref, output_dir)
 
@@ -145,7 +149,7 @@ class VariationAnnotation:
         '''
         save_variation_params = {'workspace_name': params['workspace_name'],
             'genome_or_assembly_ref': params['genome_ref'],      
-            'sample_set_ref':params['input_sample_set'],
+            'sample_set_ref': sample_set_ref,
             'sample_attribute_name':'sample_attr',
             'vcf_staging_file_path': annotated_vcf_path,
             'variation_object_name': params['output_object_name']
